@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Update Book</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <h1>Add or Update a Book</h1>
+    <nav>
+        <a href="./view.html">View Books</a>
+    </nav>
+    <div id="form-container">
+        <form id="book-form">
+            <input type="text" id="isbn" placeholder="ISBN" required />
+            <input type="text" id="title" placeholder="Title" required />
+            <input type="text" id="description" placeholder="Description" />
+            <input type="text" id="reading_status" placeholder="Status (read, reading, planned)" required />
+            <input type="date" id="publication_date" />
+            <!-- Поля автора -->
+            <input list="authors-list" id="author_selector" placeholder="Select or add Author" />
+            <datalist id="authors-list"></datalist>
+            <input type="text" id="author_first_name" placeholder="Author First Name" required />
+            <input type="text" id="author_middle_name" placeholder="Author Middle Name" />
+            <input type="text" id="author_last_name" placeholder="Author Last Name" required />        
+        
+            <!-- Поля категории -->
+            <input list="categories-list" id="category_name" placeholder="Category Name" required />
+            <datalist id="categories-list"></datalist>
+            <button type="submit">Add/Update Book</button>
+        </form>
+    </div>
+    <script src="../scripts/add.js"></script>
+</body>
+</html>

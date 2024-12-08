@@ -1,5 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/database.js';
+import Author from './Author.js';
+import Category from './Category.js';
 
 const Book = sequelize.define('Book', {
     id: {
@@ -7,7 +9,7 @@ const Book = sequelize.define('Book', {
         autoIncrement: true,
         primaryKey: true,
     },
-    isdn: {
+    isbn: {
         type: DataTypes.STRING,
         allowNull: true,
         unique: true,
@@ -34,12 +36,15 @@ const Book = sequelize.define('Book', {
     },
     author_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
     category_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
     },
 });
+
+Book.belongsTo(Author, { foreignKey: 'author_id', onDelete: 'SET NULL' });
+Book.belongsTo(Category, { foreignKey: 'category_id', onDelete: 'SET NULL' });
 
 export default Book;

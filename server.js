@@ -4,7 +4,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB, sequelize } from './config/database.js';
 import bookRoutes from './routes/bookRoutes.js';
-import { setupAssociations } from './models/associations.js';
+import categoryRoutes from './routes/categoryRoutes.js';
+import authorRoutes from './routes/authorRoutes.js';
 
 dotenv.config();
 
@@ -25,12 +26,12 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/books', bookRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/authors', authorRoutes);
 
 connectDB();
 
-setupAssociations();
-
-sequelize.sync({ alter: true })
+sequelize.sync({ force: false })
     .then(() => {
         console.log('Database synchronized.');
     })
