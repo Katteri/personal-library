@@ -1,0 +1,8 @@
+.menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 20vw;
+  height: 50vh;
+  background-color: #4b100d;
+}

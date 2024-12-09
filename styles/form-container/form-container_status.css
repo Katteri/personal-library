@@ -1,0 +1,12 @@
+.form-container_status {
+  background-color: #fbde9c;
+  border: none;
+  border-radius: .2vw;
+  width: 27.6vw;
+  padding: .2vw .3vw;
+}
+
+.form-container_status:focus {
+  border: none;
+  outline: none;
+}

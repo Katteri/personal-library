@@ -1,35 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add/Update Book</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <title>Личная библиотека</title>
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-    <h1>Add or Update a Book</h1>
-    <nav>
-        <a href="./view.html">View Books</a>
-    </nav>
-    <div id="form-container">
-        <form id="book-form">
-            <input type="text" id="isbn" placeholder="ISBN" required />
-            <input type="text" id="title" placeholder="Title" required />
-            <input type="text" id="description" placeholder="Description" />
-            <input type="text" id="reading_status" placeholder="Status (read, reading, planned)" required />
-            <input type="date" id="publication_date" />
-            <!-- Поля автора -->
-            <input list="authors-list" id="author_selector" placeholder="Select or add Author" />
-            <datalist id="authors-list"></datalist>
-            <input type="text" id="author_first_name" placeholder="Author First Name" required />
-            <input type="text" id="author_middle_name" placeholder="Author Middle Name" />
-            <input type="text" id="author_last_name" placeholder="Author Last Name" required />        
+    <div class="page">
+        <header class="header">            
+            <div class="green-lamp">
+                <input type="checkbox" class="green-lamp_button"/>
+                <div class="green-lamp_frame">
+                    <h1 class="text text_header">моя библиотека</h1>
+                    <div class="green-lamp_holder"></div>
+                    <div class="green-lamp_holder"></div>
+                </div>
+                <div class="green-lamp_light"></div>
+                <div class="green-lamp_switch">
+                    <div class="green-lamp_rope"></div>
+                    <div class="green-lamp_point"></div>
+                </div>
+            </div>
+        </header>
         
-            <!-- Поля категории -->
-            <input list="categories-list" id="category_name" placeholder="Category Name" required />
-            <datalist id="categories-list"></datalist>
-            <button type="submit">Add/Update Book</button>
-        </form>
+        <section class="menu">
+            <h3 class="text text_menu">Меню</h3>
+            <nav>
+                <ul>
+                    <li><a href="#">Добавить книгу</a></li>
+                    <li><a href="./view.html">Все книги</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="content">
+            <div id="form" class="form-container">
+                <button id="close-form" class="form-container_close">х</button>
+                <form id="book-form" class="form">
+                    <h2 class="text text_form-header">Новая книга</h2>
+                    <label class="input-label text_form">
+                        <span class="text text_form">ISBN *:</span>
+                        <input type="text" id="isbn" placeholder="978-5-389-06256-6" class="form-container_input" />
+                    </label>
+                    <p class="text text_footnote">* ISBN (International Standard Book Number) — уникальный номер книжного издания.</p>
+                    <label class="input-label text_form">
+                        <span class="text text_form">Название:</span>
+                        <input type="text" id="title" placeholder="Война и мир" class="form-container_input" required />
+                    </label>
+                    <label class="input-label text_form">
+                        <span class="text text_form">Описание:</span>
+                        <textarea id="description" class="form-container_input textarea" cols="40" rows="3" placeholder="Роман-эпопея Льва Николаевича Толстого, описывающий русское общество в эпоху войн против Наполеона в 1805—1812 годах."></textarea>
+                    </label>
+                    <label class="input-label text_form">Статус книги:
+                        <select id="reading_status" class="form-container_status">
+                            <option>прочитано</option>
+                            <option>читаю</option>
+                            <option>планирую читать</option>
+                        </select>
+                    </label>
+                    <label class="input-label text_form">
+                        <span class="text text_form">Дата публикации:</span>
+                        <input type="date" id="publication_date" value="1867-01-01" class="form-container_input"/>
+                    </label>
+                    <label class="input-label text_form">
+                        <span class="text text_form">Категория:</span>
+                        <input list="categories-list" id="category_name" placeholder="Роман" class="form-container_input" required />
+                        <datalist id="categories-list"></datalist>
+                    </label>
+                    <h3 class="text text_form-header">Автор</h3>
+                    <label class="input-label text_form">
+                        <span class="text text_form">Выберите автора или добавьте нового:</span>
+                        <input list="authors-list" id="author_selector" placeholder="Лев Николаевич Толстой" class="form-container_input" />
+                        <datalist id="authors-list"></datalist>
+                    </label>
+                    <label class="input-label text_form">
+                        <span class="text text_form">Имя:</span>
+                        <input type="text" id="author_first_name" placeholder="Лев" class="form-container_input" required />
+                    </label>
+                    <label class="input-label text_form">
+                        <span class="text text_form">Отчество:</span>
+                        <input type="text" id="author_middle_name" placeholder="Николаевич" class="form-container_input" />
+                    </label>
+                    <label class="input-label text_form">
+                        <span class="text">Фамилия:</span>
+                        <input type="text" id="author_last_name" placeholder="Толстой" class="form-container_input" required />  
+                    </label>                    
+                    <button type="submit" class="form-container_submit">ДОБАВИТЬ КНИГУ</button>
+                </form>
+            </div>
+        </section>
     </div>
     <script src="../scripts/add.js"></script>
 </body>

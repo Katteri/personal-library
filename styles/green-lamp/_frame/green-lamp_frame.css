@@ -1,0 +1,9 @@
+.green-lamp_frame {
+  background-color: #2d5902;
+  border-radius: 10vw 10vw 0.5vw 0.5vw;
+	height: 10vw;
+	width: 40vw;
+  position: relative;
+  bottom: 10vw;
+  z-index: 5;
+}

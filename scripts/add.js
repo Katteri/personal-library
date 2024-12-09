@@ -101,6 +101,11 @@ async function handleFormSubmit(event) {
     }
 }
 
+function closeForm() {
+    document.getElementById('form').style.display = "none";
+}
+
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', populateDatalists);
+document.getElementById('close-form').addEventListener('click', closeForm);
 document.getElementById('book-form').addEventListener('submit', handleFormSubmit);

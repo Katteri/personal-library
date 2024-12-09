@@ -1,0 +1,16 @@
+.form-container_close {
+  position: absolute;
+  top: 5vw;
+  right: -2.5vw;
+  width: 5vw;
+  height: 5vw;
+  border-radius: 2.5vw;
+  background-color: #8ca32f;
+  border: solid #4b100d .2vw;
+  box-shadow: none;
+  appearance: none;
+  font-family: "Bezier Sans";
+  font-weight: 100;
+  font-size: 4vw;
+  color: #4b100d;
+}

@@ -1,0 +1,14 @@
+.form-container_submit {
+  height: 3vw;
+  width: 15vw;
+  border-radius: .5vw;
+  background-color: #8ca32f;
+  border: solid #4b100d .2vw;
+  box-shadow: none;
+  appearance: none;
+  font-family: Racama;
+  font-weight: 700;
+  font-size: 1.2vw;
+  color: #4b100d;
+  margin-left: 36vw;
+}

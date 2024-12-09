@@ -1,0 +1,23 @@
+@font-face {
+  font-family: Riviera;   
+  src: url("./riviera.otf") format("opentype"); 
+  font-style: normal; 
+  font-weight: normal; 
+} 
+
+@font-face {
+  font-family: ST-Brigantina;
+  src: url("./ST-Brigantina-free.otf") format("opentype");
+  font-style: normal; 
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Bezier Sans";
+  src: url("./Bézier\ Sans™_variable.ttf");
+}
+
+@font-face {
+  font-family: Racama;
+  src: url("./Racama.otf");
+}

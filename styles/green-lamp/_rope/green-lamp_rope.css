@@ -1,0 +1,6 @@
+.green-lamp_rope {
+  position: absolute;
+  width: 0;
+  height: 10vw;
+  border-left: .8vw dotted #4b100d;
+}

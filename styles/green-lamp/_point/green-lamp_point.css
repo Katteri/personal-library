@@ -1,0 +1,9 @@
+.green-lamp_point {
+  position: absolute;
+  top: 10.7vw;
+  left: -.4vw;
+  width: 1.7vw;
+  height: 1.2vw;
+  background-color: #803407;
+  border-radius: 1vw 1vw .1vw .1vw;
+}

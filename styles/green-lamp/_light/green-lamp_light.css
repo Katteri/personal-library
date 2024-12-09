@@ -1,0 +1,10 @@
+.green-lamp_light {
+  position: absolute;
+  top: -3vw;
+  background: radial-gradient(at top, rgb(251, 222, 156, 0.8), rgb(251, 222, 156, 0.4), rgb(251, 222, 156, 0.1),rgba(251, 222, 156, 0));
+  width: 75vw;
+  height: 60vw;
+  border-radius: 38vw 38vw 0 0;
+  z-index: 3;
+  display: none;
+}

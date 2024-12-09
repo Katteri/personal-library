@@ -1,0 +1,17 @@
+.green-lamp_button {
+  position: absolute;
+  top: 0;
+  left: 10vw;
+  width: 1vw;
+  height: 12vw;
+  appearance: none;
+  z-index: 10;
+}
+
+.green-lamp_button:checked ~ .green-lamp_light{
+  display: block;
+}
+
+.green-lamp_button:checked ~ .green-lamp_frame > .text_header {
+  color: #fbde9c;
+}

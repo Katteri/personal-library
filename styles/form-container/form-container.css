@@ -1,0 +1,7 @@
+.form-container {
+  position: absolute;
+  left: 0;
+  width: 60vw;
+  height: 100vh;
+  background: linear-gradient(#e2787d, #9c0b0a);
+}
