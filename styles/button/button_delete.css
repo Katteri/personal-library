@@ -1,0 +1,9 @@
+.button_delete {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.button_delete:hover {  
+  box-shadow: none;
+  box-shadow: .3vw .5vw #9c0b0a;
+}

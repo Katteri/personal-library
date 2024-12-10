@@ -1,0 +1,9 @@
+.text_book-card {
+  font-family: Racama;
+  color: #150c09;
+  margin-bottom: 1vw;
+}
+
+.text_book-card:first-child {
+  margin: 0;
+}

@@ -1,0 +1,10 @@
+.button {
+  cursor: pointer;
+  border: solid .1vw #141414;
+  border-radius: 2vw;
+  padding: .7vw .7vw .5vw .7vw;
+  box-shadow: none;
+  appearance: none;
+  font-family: Racama;
+  color: #150c09;
+}

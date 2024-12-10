@@ -1,0 +1,8 @@
+.button_update {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.button_update:hover {
+  box-shadow: .3vw .5vw #8e9a5d;
+}

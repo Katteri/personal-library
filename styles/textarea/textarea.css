@@ -3,4 +3,5 @@
   max-width: 27vw;
   min-height: 4vw;
   max-height: 4vw;
+  resize: none;
 }

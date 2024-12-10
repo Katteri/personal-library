@@ -1,18 +1,17 @@
-import { Op } from 'sequelize';
 import Book from '../models/Book.js';
 import Author from '../models/Author.js';
 import Category from '../models/Category.js';
 
 export const getBooks = async (req, res) => {
     try {
-        const { category, author, reading_status } = req.query;
+        const { category_id, author_id, reading_status } = req.query;
         const whereConditions = {};
 
-        if (category) {
-            whereConditions.category_id = category;
+        if (category_id) {
+            whereConditions.category_id = category_id;
         }
-        if (author) {
-            whereConditions.author_id = author;
+        if (author_id) {
+            whereConditions.author_id = author_id;
         }
         if (reading_status) {
             whereConditions.reading_status = reading_status;
@@ -20,7 +19,7 @@ export const getBooks = async (req, res) => {
 
         const books = await Book.findAll({
             where: whereConditions,
-            include: [Author, Category], // Включаем связанные таблицы
+            include: [Author, Category],
         });
 
         res.json(books);

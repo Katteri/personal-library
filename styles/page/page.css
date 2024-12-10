@@ -1,0 +1,5 @@
+.page {
+  /* background-image: linear-gradient(to right, #626c3b 0%, #150c09 100%); */
+  background-color: #cfc4b1;
+  min-height: 100vh;
+}

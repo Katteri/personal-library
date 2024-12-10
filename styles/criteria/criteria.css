@@ -1,0 +1,9 @@
+.criteria {
+  width: 50vw;
+  height: 10vw;
+  margin: 3vw auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}

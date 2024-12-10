@@ -1,0 +1,10 @@
+.text_view-header {
+  font-family: Riviera;
+  font-weight: 700;
+  font-size: 5vw;
+  margin: 0 auto;
+  text-align: center;
+  letter-spacing: 1vw;
+  color: #141414;
+  padding-top: 2vw;
+}

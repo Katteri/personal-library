@@ -9,7 +9,7 @@ const Author = sequelize.define('Author', {
     },
     first_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     middle_name: {
         type: DataTypes.STRING,

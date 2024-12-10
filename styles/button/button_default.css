@@ -1,0 +1,9 @@
+.button_default {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.button_default:hover {  
+  box-shadow: none;
+  box-shadow: .3vw .5vw #935727;
+}

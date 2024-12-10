@@ -2,9 +2,18 @@ const API_URL = 'http://localhost:3000/api/books';
 const AUTHORS_URL = 'http://localhost:3000/api/authors';
 const CATEGORIES_URL = 'http://localhost:3000/api/categories';
 
+const statusMapping = {
+    'прочитано': 'read',
+    'читаю': 'reading',
+    'планирую читать': 'planned',
+};
+
+function mapReadingStatus(status) {
+    return statusMapping[status] || null;
+}
+
 async function populateDatalists() {
     try {
-        // Запрашиваем авторов и категории
         const [authorsResponse, categoriesResponse] = await Promise.all([
             fetch(AUTHORS_URL),
             fetch(CATEGORIES_URL),
@@ -15,21 +24,19 @@ async function populateDatalists() {
             categoriesResponse.json(),
         ]);
 
-        // Заполняем список авторов
         const authorsList = document.getElementById('authors-list');
-        authorsList.innerHTML = ''; // Очищаем список
+        authorsList.innerHTML = '';
         authors.forEach(author => {
             const option = document.createElement('option');
             option.value = `${author.first_name} ${author.last_name}`;
             option.setAttribute('data-first-name', author.first_name);
-            option.setAttribute('data-middle-name', author.middle_name || ''); // Если нет middle_name, пустая строка
+            option.setAttribute('data-middle-name', author.middle_name || '');
             option.setAttribute('data-last-name', author.last_name);
             authorsList.appendChild(option);
         });
 
-        // Заполняем список категорий
         const categoriesList = document.getElementById('categories-list');
-        categoriesList.innerHTML = ''; // Очищаем список
+        categoriesList.innerHTML = '';
         categories.forEach(category => {
             const option = document.createElement('option');
             option.value = category.category_name;
@@ -40,7 +47,6 @@ async function populateDatalists() {
     }
 }
 
-// Обработчик выбора автора
 document.getElementById('author_selector').addEventListener('input', (event) => {
     const selectedValue = event.target.value;
     const authorsList = document.getElementById('authors-list');
@@ -52,10 +58,9 @@ document.getElementById('author_selector').addEventListener('input', (event) => 
         const lastName = matchingOption.getAttribute('data-last-name');
 
         document.getElementById('author_first_name').value = firstName || '';
-        document.getElementById('author_middle_name').value = middleName || ''; // Если нет middle_name, поле остается пустым
+        document.getElementById('author_middle_name').value = middleName || '';
         document.getElementById('author_last_name').value = lastName || '';
     } else {
-        // Если введено новое значение, очищаем поля first_name, middle_name и last_name
         document.getElementById('author_first_name').value = '';
         document.getElementById('author_middle_name').value = '';
         document.getElementById('author_last_name').value = '';
@@ -67,18 +72,18 @@ async function handleFormSubmit(event) {
     const form = event.target;
 
     const bookData = {
-        isbn: form.isbn.value,
+        isbn: form.isbn.value || null,
         title: form.title.value,
-        description: form.description.value,
-        reading_status: form.reading_status.value,
+        description: form.description.value || null,
+        reading_status: mapReadingStatus(form.reading_status.value),
         publication_date: form.publication_date.value,
         author: {
-            first_name: form.author_first_name.value,
-            middle_name: form.author_middle_name.value || null, // null, если поле пустое
+            first_name: form.author_first_name.value || null,
+            middle_name: form.author_middle_name.value || null,
             last_name: form.author_last_name.value,
         },
         category: {
-            category_name: form.category_name.value,
+            category_name: form.category_name.value || null,
         },
     };
 
@@ -89,23 +94,25 @@ async function handleFormSubmit(event) {
             body: JSON.stringify(bookData),
         });
 
-        if (response.ok) {
-            alert('Book added/updated successfully!');
+        if (response.ok || response.status === 201) {
+            alert('Книга успешно добавлена!');
             form.reset();
         } else {
             const errorData = await response.json();
             console.error('Error:', errorData.message);
         }
     } catch (error) {
-        console.error('Error adding/updating book:', error);
+        console.error('Ошибка добавления книги:', error);
     }
 }
 
 function closeForm() {
-    document.getElementById('form').style.display = "none";
+    document.getElementById('add').style.display = "none";
+    document.getElementById('page').style.height = '';
+    document.getElementById('page').style.overflow = 'auto';
+    document.form.reset();
 }
 
-// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', populateDatalists);
 document.getElementById('close-form').addEventListener('click', closeForm);
 document.getElementById('book-form').addEventListener('submit', handleFormSubmit);
