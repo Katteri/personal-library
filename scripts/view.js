@@ -222,10 +222,20 @@ async function openUpdateForm(bookId) {
         ) || '';
         document.getElementById('publication_date').value = book.publication_date.slice(0, 7);
         document.getElementById('category_name').value = category.category_name;
+        document.getElementById('category_name').setAttribute("readonly", "readonly");
+        document.getElementById('category_name').style.color = 'grey';
         document.getElementById('author_selector').value = `${author.first_name} ${author.last_name}`;
+        document.getElementById('author_selector').setAttribute("readonly", "readonly");
+        document.getElementById('author_selector').style.color = 'grey';
         document.getElementById('author_first_name').value = author.first_name;
+        document.getElementById('author_first_name').setAttribute("readonly", "readonly");
+        document.getElementById('author_first_name').style.color = 'grey';
         document.getElementById('author_middle_name').value = author.middle_name || '';
+        document.getElementById('author_middle_name').setAttribute("readonly", "readonly");
+        document.getElementById('author_middle_name').style.color = 'grey';
         document.getElementById('author_last_name').value = author.last_name;
+        document.getElementById('author_last_name').setAttribute("readonly", "readonly");
+        document.getElementById('author_last_name').style.color = 'grey';
         document.getElementById('form-submit').textContent = 'готово';
         // Сохранение ID редактируемой книги для дальнейшего использования
         document.getElementById('book-form').dataset.bookId = book.id;
@@ -248,14 +258,6 @@ async function handleUpdateBook(event) {
         description: form.description.value || null,
         reading_status: mapReadingStatus(form.reading_status.value),
         publication_date: form.publication_date.value,
-        author: {
-            first_name: form.author_first_name.value || null,
-            middle_name: form.author_middle_name.value || null,
-            last_name: form.author_last_name.value,
-        },
-        category: {
-            category_name: form.category_name.value || null,
-        },
     };
 
     try {

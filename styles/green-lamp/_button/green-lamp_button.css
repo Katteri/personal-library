@@ -6,6 +6,7 @@
   height: 12vw;
   appearance: none;
   z-index: 10;
+  cursor: pointer;
 }
 
 .green-lamp_button:checked ~ .green-lamp_light{
