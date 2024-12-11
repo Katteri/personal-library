@@ -6,6 +6,7 @@ import { connectDB, sequelize } from './config/database.js';
 import bookRoutes from './routes/bookRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import authorRoutes from './routes/authorRoutes.js';
+import { v4 as uuidv4 } from 'uuid';
 
 dotenv.config();
 
@@ -15,13 +16,26 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get('/api/config', (req, res) => {
+    res.json({
+        apiUrl: `http://localhost:${PORT}/api/books`,
+        authorsUrl: `http://localhost:${PORT}/api/authors`,
+        categoriesUrl: `http://localhost:${PORT}/api/categories`,
+    });
+});
+
+
 // логи
 app.use((req, res, next) => {
+    const requestId = uuidv4();
     const start = Date.now();
+
     res.on('finish', () => {
-        const duration = Date.now() - start;
-        console.log(`${req.method} ${req.url} [${res.statusCode}] - ${duration}ms`);
+        const duration = Date.now() - start; 
+        console.log(`[${requestId}] ${req.method} ${req.url} [${res.statusCode}] - ${duration}ms`);
     });
+
+    req.requestId = requestId;
     next();
 });
 
