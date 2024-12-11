@@ -35,7 +35,7 @@
                 </label>
                 <label class="input-label text_form">
                     <span class="text text_form">Дата публикации:</span>
-                    <input type="date" id="publication_date" value="1867-01-01" class="form-container_input text"/>
+                    <input type="month" id="publication_date" value="1867-01" class="form-container_input text"/>
                 </label>
                 <label class="input-label text_form">
                     <span class="text text_form">Категория:</span>
@@ -73,7 +73,6 @@
           </div>
           <h1 class="text text_view-header">Моя библиотека</h1>
           <div class="criteria">
-            <!-- <div id="filters-container" class="text text_default">  filter -->
             <p class="text text_default">Фильтры</p>
             <select id="category-filter" class="filter_input text text_default">
                 <option value="">Все категории</option>
@@ -88,15 +87,12 @@
                 <option value="planned">Планирую читать</option>
             </select>
             <button id="apply-filters" class="button button_default text">применить</button>
-            <!-- </div> -->
-            <!-- <div id="sort-container" class="text text_default"> sort -->
             <p class="text text_default">Сортировка</p>
             <select id="sort-by" class="filter_input text text_default">
                 <option value="author">По автору</option>
                 <option value="category">По жанру</option>
                 <option value="title">По названию</option>
             </select>
-            <!-- </div> -->
             <button id='open-form' class="button button_default button_add text">добавить книгу</button>
         </div>
         <div id="books-container" class="books-container"></div>

@@ -3,6 +3,25 @@ function getReadingStatus(value) {
     return key;
 }
 
+function formatDate(sqliteDate) {
+    const months = [
+        'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн',
+        'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'
+    ];
+
+    const date = new Date(sqliteDate);
+
+    if (isNaN(date)) {
+        console.error('Invalid date format');
+        return null;
+    }
+
+    const monthName = months[date.getMonth()];
+    const year = date.getFullYear();
+
+    return `${monthName} ${year}`;
+}
+
 function sortBooks(books, criteria) {
     switch (criteria) {
         case 'author':
@@ -67,7 +86,7 @@ function renderBooks(books) {
             <p class="text text_book-card">${authorName}</p>
             <p class="text text_book-card">${categoryName}</p>
             <p class="text text_book-card">${book.description || 'Нет описания'}</p>
-            <p class="text text_book-card">Дата публикации: ${(book.publication_date)? book.publication_date.slice(0, 10) : 'не указана'}</p>
+            <p class="text text_book-card">Дата публикации: ${(book.publication_date)? formatDate(book.publication_date.slice(0, 10)) : 'не указана'}</p>
             <div class="book-card_bottom">
                 <p class="text text_book-card text_right">${getReadingStatus(book.reading_status).toUpperCase()}</p>
                 <div id="book-card__buttons" class="book-card__buttons">
@@ -161,7 +180,7 @@ function openForm() {
     document.getElementById('isbn').ariaPlaceholder = '978-5-389-06256-6';
     document.getElementById('title').ariaPlaceholder = "Война и мир";
     document.getElementById('description').ariaPlaceholder = "Роман-эпопея Льва Николаевича Толстого, описывающий русское общество в эпоху войн против Наполеона в 1805—1812 годах.";
-    document.getElementById('publication_date').value = "1867-01-01";
+    document.getElementById('publication_date').value = "1867-01";
     document.getElementById('category_name').ariaPlaceholder = 'Роман';
     document.getElementById('author_selector').ariaPlaceholder = "Лев Николаевич Толстой";
     document.getElementById('author_first_name').ariaPlaceholder = "Лев";
@@ -201,7 +220,7 @@ async function openUpdateForm(bookId) {
         document.getElementById('reading_status').value = Object.keys(statusMapping).find(
             key => statusMapping[key] === book.reading_status
         ) || '';
-        document.getElementById('publication_date').value = book.publication_date.slice(0, 10);
+        document.getElementById('publication_date').value = book.publication_date.slice(0, 7);
         document.getElementById('category_name').value = category.category_name;
         document.getElementById('author_selector').value = `${author.first_name} ${author.last_name}`;
         document.getElementById('author_first_name').value = author.first_name;
