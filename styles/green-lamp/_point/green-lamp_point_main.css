@@ -1,0 +1,8 @@
+.green-lamp_point_main {
+  top: 5.5vw;
+  left: -.35vw;
+  width: 1.2vw;
+  height: .8vw;
+  background-color: #c9823c;
+  border-radius: .6vw .6vw .1vw .1vw;
+}

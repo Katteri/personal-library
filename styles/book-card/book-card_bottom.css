@@ -1,0 +1,6 @@
+.book-card_bottom {
+  height: 4.2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

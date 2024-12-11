@@ -110,6 +110,7 @@ function closeForm() {
     document.getElementById('add').style.display = "none";
     document.getElementById('page').style.height = '';
     document.getElementById('page').style.overflow = 'auto';
+    document.getElementById('switch').style.display = "block";
     document.form.reset();
 }
 

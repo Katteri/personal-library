@@ -2,4 +2,29 @@
   font-family: Racama;
   font-size: 1vw;
   color: #141414;
+  align-self: center;
+}
+
+.text_default:first-child {
+  grid-area: filtr-name;
+}
+
+.text_default:nth-child(2) {
+  grid-area: filtr-1;
+}
+
+.text_default:nth-child(3) {
+  grid-area: filtr-2;
+}
+
+.text_default:nth-child(4) {
+  grid-area: filtr-3;
+}
+
+.text_default:nth-child(6) {
+  grid-area: sort-name;
+}
+
+.text_default:nth-child(7) {
+  grid-area: sort;
 }

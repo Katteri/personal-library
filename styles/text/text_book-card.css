@@ -4,6 +4,10 @@
   margin-bottom: 1vw;
 }
 
-.text_book-card:first-child {
+/* .text_book-card:first-child {
   margin: 0;
+} */
+
+.text_book-card:last-of-type {
+  margin-bottom: 0;
 }

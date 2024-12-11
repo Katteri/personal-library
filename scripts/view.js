@@ -60,7 +60,7 @@ function renderBooks(books) {
         const bookCard = document.createElement('div');
         bookCard.className = 'book-card';
         bookCard.innerHTML = `
-            <div>
+            <div class=text_book-card>
                 <h3 class="text text_book-card book-card__heading">${book.title}</h3>
                 <p class="text text_book-card text_footnote">ISBN: ${book.isbn || 'не найден'}</p>
             </div>
@@ -68,10 +68,12 @@ function renderBooks(books) {
             <p class="text text_book-card">${categoryName}</p>
             <p class="text text_book-card">${book.description || 'Нет описания'}</p>
             <p class="text text_book-card">Дата публикации: ${(book.publication_date)? book.publication_date.slice(0, 10) : 'не указана'}</p>
-            <p class="text text_book-card text_right">${getReadingStatus(book.reading_status).toUpperCase()}</p>
-            <div id="book-card__buttons" class="book-card__buttons">
-                <button class="button button_delete" data-id="${book.id}">удалить</button>
-                <button class="button button_update" data-id=${book.id}>редактировать</button>
+            <div class="book-card_bottom">
+                <p class="text text_book-card text_right">${getReadingStatus(book.reading_status).toUpperCase()}</p>
+                <div id="book-card__buttons" class="book-card__buttons">
+                    <button class="button button_delete text" data-id="${book.id}">удалить</button>
+                    <button class="button button_update text" data-id=${book.id}>редактировать</button>
+                </div>
             </div>
         `;
         container.appendChild(bookCard);
@@ -154,7 +156,7 @@ function openForm() {
     document.getElementById('page').style.height = '100vh';
     document.getElementById('page').style.overflow = 'hidden';
     document.getElementById('form').style.background = "linear-gradient(#e2787d, #9c0b0a)";
-    
+    document.getElementById('switch').style.display = "none";
     document.getElementById('form-header').textContent = 'Новая книга';
     document.getElementById('isbn').ariaPlaceholder = '978-5-389-06256-6';
     document.getElementById('title').ariaPlaceholder = "Война и мир";
@@ -189,6 +191,7 @@ async function openUpdateForm(bookId) {
         document.getElementById('page').style.height = '100vh';
         document.getElementById('page').style.overflow = 'hidden';
         document.getElementById('form').style.background = "linear-gradient(#efa078, #935727)";
+        document.getElementById('switch').style.display = "none";
 
         // Заполнить форму данными книги
         document.getElementById('form-header').textContent = 'Редактирование';
@@ -270,9 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Переопределяем обработчик формы для обработки обновлений
 document.getElementById('book-form').addEventListener('submit', (event) => {
     if (event.target.dataset.bookId) {
-        handleUpdateBook(event); // Если есть ID книги, обновляем её
+        handleUpdateBook(event);
     } else {
-        handleFormSubmit(event); // Иначе создаём новую книгу
+        handleFormSubmit(event);
     }
 });
 
@@ -283,3 +286,16 @@ document.getElementById('sort-by').addEventListener('change', () => {
     fetchBooks(getFilterValues());
 });
 document.getElementById('open-form').addEventListener('click', openForm);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const greenLampButton = document.querySelector('.green-lamp_button');
+  
+    greenLampButton.addEventListener('change', (event) => {
+        if (event.target.checked) {
+            setTimeout(() => {
+                window.location.href = './index.html';
+            }, 1000);
+        }
+    });
+  });

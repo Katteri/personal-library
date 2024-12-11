@@ -1,8 +1,8 @@
 .books-container {
-  width: 70vw;
+  width: 71vw;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex-direction: row;
   flex-wrap: wrap;
 }
