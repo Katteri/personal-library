@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import os from 'os';
+import fs from 'fs/promises';
 import { connectDB, sequelize } from './config/database.js';
 import bookRoutes from './routes/bookRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
@@ -37,6 +39,35 @@ app.use((req, res, next) => {
 
     req.requestId = requestId;
     next();
+});
+
+// информация о сервере
+app.get('/api/server-info', (req, res) => {
+    const serverInfo = {
+        hostname: os.hostname(),
+        platform: os.platform(),
+        architecture: os.arch(),
+        uptime: os.uptime(),
+        memory: {
+            free: os.freemem(),
+            total: os.totalmem(),
+        },
+        cpus: os.cpus(),
+    };
+
+    res.json(serverInfo);
+});
+
+// чтение файла
+app.get('/api/file-content', async (req, res) => {
+    const filePath = './data/example.txt';
+    try {
+        const fileContent = await fs.readFile(filePath, 'utf8');
+        res.json({ content: fileContent });
+    } catch (error) {
+        console.error('Error reading file:', error);
+        res.status(500).json({ error: 'Failed to read file' });
+    }
 });
 
 app.use('/api/books', bookRoutes);
