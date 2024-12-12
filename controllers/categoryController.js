@@ -5,7 +5,7 @@ export const getCategories = async (req, res) => {
         const categories = await Category.findAll();
         res.json(categories);
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка извлечения категории', error });
+        res.status(500).json({ message: 'Error fetching categories', error });
     }
 };
 
@@ -14,10 +14,10 @@ export const getCategoryById = async (req, res) => {
     try {
         const category = await Category.findByPk(id);
         if (!category) {
-            return res.status(404).json({ message: 'Категория не найден' });
+            return res.status(404).json({ message: 'Category not found' });
         }
         res.json(category);
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка извлечения информации о категории', error });
+        res.status(500).json({ message: 'Error fetching category info', error });
     }
 };

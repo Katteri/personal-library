@@ -38,11 +38,6 @@ app.get('/api/server-info', (req, res) => {
         hostname: os.hostname(),
         platform: os.platform(),
         architecture: os.arch(),
-        uptime: os.uptime(),
-        memory: {
-            free: os.freemem(),
-            total: os.totalmem(),
-        },
         cpus: os.cpus(),
     };
 

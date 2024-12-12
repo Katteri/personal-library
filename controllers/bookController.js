@@ -1,7 +1,6 @@
 import Book from '../models/Book.js';
 import Author from '../models/Author.js';
 import Category from '../models/Category.js';
-import { sequelize } from '../config/database.js';
 
 export const getBooks = async (req, res) => {
     try {
@@ -25,16 +24,14 @@ export const getBooks = async (req, res) => {
 
         res.json(books);
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка извлечения книг', error });
+        res.status(500).json({ message: 'Error fetching books', error });
     }
 };
 
 export const createBook = async (req, res) => {
     const { title, isbn, description, reading_status, publication_date, author, category } = req.body;
-    const t = await sequelize.transaction();
 
     try {
-        // Проверяем и создаём автора, если его нет
         const [authorRecord] = await Author.findOrCreate({
             where: {
                 first_name: author.first_name,
@@ -46,17 +43,13 @@ export const createBook = async (req, res) => {
                 last_name: author.last_name,
                 middle_name: author.middle_name || null,
             },
-            transaction: t, // Привязка транзакции
         });
 
-        // Проверяем и создаём категорию, если её нет
         const [categoryRecord] = await Category.findOrCreate({
             where: { category_name: category.category_name },
             defaults: { category_name: category.category_name },
-            transaction: t, // Привязка транзакции
         });
 
-        // Создаём книгу с привязкой к автору и категории
         const book = await Book.create({
             title,
             isbn,
@@ -65,47 +58,45 @@ export const createBook = async (req, res) => {
             publication_date: publication_date || null,
             author_id: authorRecord.id,
             category_id: categoryRecord.id,
-        }, { transaction: t });
+        });
 
-        await t.commit(); // Подтверждение транзакции
         res.status(201).json(book);
     } catch (error) {
-        await t.rollback(); // Откат транзакции
-        console.error('Ошибка создания книги:', error);
-        res.status(400).json({ message: 'Ошибка создания книги', error });
+        console.error('Error creating book:', error);
+        res.status(400).json({ message: 'Error creating book', error });
     }
 };
 
 export const getBookById = async (req, res) => {
     try {
         const book = await Book.findByPk(req.params.id);
-        if (!book) return res.status(404).json({ message: 'Книга не найдена' });
+        if (!book) return res.status(404).json({ message: 'Book not found' });
         res.json(book);
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка извлечения книги', error });
+        res.status(500).json({ message: 'Error fetching book', error });
     }
 };
 
 export const updateBook = async (req, res) => {
     try {
         const book = await Book.findByPk(req.params.id);
-        if (!book) return res.status(404).json({ message: 'Книга не найдена' });
+        if (!book) return res.status(404).json({ message: 'Book not found' });
 
         await book.update(req.body);
         res.json(book);
     } catch (error) {
-        res.status(400).json({ message: 'Ошибка редактирования записи книги', error });
+        res.status(400).json({ message: 'Error updating book', error });
     }
 };
 
 export const deleteBook = async (req, res) => {
     try {
         const book = await Book.findByPk(req.params.id);
-        if (!book) return res.status(404).json({ message: 'Книга не найдена' });
+        if (!book) return res.status(404).json({ message: 'Book not found' });
 
         await book.destroy();
-        res.json({ message: 'Книга успешно удалена!' });
+        res.json({ message: 'Book deleted successfully' });
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка удаления книги', error });
+        res.status(500).json({ message: 'Error deleting book', error });
     }
 };

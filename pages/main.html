@@ -15,16 +15,16 @@
                 <h2 class="text text_form-header" id="form-header">Новая книга</h2>
                 <label class="input-label text_form">
                     <span class="text text_form">ISBN *:</span>
-                    <input type="text" id="isbn" placeholder="978-5-389-06256-6" class="form-container_input text" />
+                    <input type="text" id="isbn" class="form-container_input text" />
                 </label>
                 
                 <label class="input-label text_form">
                     <span class="text text_form">Название:</span>
-                    <input type="text" id="title" placeholder="Война и мир" class="form-container_input text" required />
+                    <input type="text" id="title" class="form-container_input text" required />
                 </label>
                 <label class="input-label text_form">
                     <span class="text text_form">Описание:</span>
-                    <textarea id="description" class="form-container_input textarea text" maxlength="140" cols="40" rows="3" placeholder="Роман-эпопея Льва Николаевича Толстого, описывающий русское общество в эпоху войн против Наполеона в 1805—1812 годах."></textarea>
+                    <textarea id="description" class="form-container_input textarea text" maxlength="200" cols="40" rows="3"></textarea>
                 </label>
                 <label class="input-label text_form text">Статус книги:
                     <select id="reading_status" class="form-container_status text">
@@ -35,30 +35,30 @@
                 </label>
                 <label class="input-label text_form">
                     <span class="text text_form">Дата публикации:</span>
-                    <input type="month" id="publication_date" value="1867-01" class="form-container_input text"/>
+                    <input type="month" id="publication_date" class="form-container_input text"/>
                 </label>
                 <label class="input-label text_form">
                     <span class="text text_form">Категория:</span>
-                    <input list="categories-list" id="category_name" placeholder="Роман" class="form-container_input text" required/>
+                    <input list="categories-list" id="category_name" class="form-container_input text" required/>
                     <datalist id="categories-list"></datalist>
                 </label>
                 <h3 class="text text_form-header">Автор</h3>
                 <label class="input-label text_form">
                     <span class="text text_form">Выберите автора или добавьте нового:</span>
-                    <input list="authors-list" id="author_selector" placeholder="Лев Николаевич Толстой" class="form-container_input text" />
+                    <input list="authors-list" id="author_selector" class="form-container_input text" />
                     <datalist id="authors-list"></datalist>
                 </label>
                 <label class="input-label text_form">
                     <span class="text text_form">Имя:</span>
-                    <input type="text" id="author_first_name" placeholder="Лев" class="form-container_input text" required/>
+                    <input type="text" id="author_first_name" class="form-container_input text" required/>
                 </label>
                 <label class="input-label text_form">
                     <span class="text text_form">Отчество:</span>
-                    <input type="text" id="author_middle_name" placeholder="Николаевич" class="form-container_input text" />
+                    <input type="text" id="author_middle_name" class="form-container_input text" />
                 </label>
                 <label class="input-label text_form">
                     <span class="text">Фамилия:</span>
-                    <input type="text" id="author_last_name" placeholder="Толстой" class="form-container_input text" required/>  
+                    <input type="text" id="author_last_name" class="form-container_input text" required/>  
                 </label>  
                 <p class="text text_footnote">* ISBN (International Standard Book Number) — уникальный номер<br>книжного издания.</p>                  
                 <button type="submit" class="form-container_submit" id="form-submit">добавить книгу</button>
@@ -89,16 +89,21 @@
             <button id="apply-filters" class="button button_default text">применить</button>
             <p class="text text_default">Сортировка</p>
             <select id="sort-by" class="filter_input text text_default">
+                <option value="title">По названию</option>
                 <option value="author">По автору</option>
                 <option value="category">По жанру</option>
-                <option value="title">По названию</option>
             </select>
             <button id='open-form' class="button button_default button_add text">добавить книгу</button>
         </div>
-        <div id="books-container" class="books-container"></div>
+        <div id="books-container" class="books-container">
+            <p class="text text_book-card text_center">Нет информации о книгах.</p>
+        </div>
         </section>
+        <footer class="footer">
+            <h4>ИНФОРМАЦИЯ О СЕРВЕРЕ</h4>
+            <div id="server-info" class="">Загрузка информации о сервере...</div>
+        </footer>
     </div>
-    <script src="../scripts/add.js"></script>
-    <script src="../scripts/view.js"></script>
+    <script src="../scripts/main.js"></script>
 </body>
 </html>

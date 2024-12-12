@@ -1,0 +1,14 @@
+.footer {
+  margin-top: 5vw;
+  background-color: #333;
+  color: #cfc4b1;
+  font-family: Racama;
+  font-size: .8vw;
+  text-align: center;
+  padding: 1vw;
+}
+
+.footer p {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

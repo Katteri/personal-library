@@ -5,7 +5,7 @@ export const getAuthors = async (req, res) => {
         const authors = await Author.findAll();
         res.json(authors);
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка извлечения авторов', error });
+        res.status(500).json({ message: 'Error fetching author', error });
     }
 };
 
@@ -14,10 +14,10 @@ export const getAuthorById = async (req, res) => {
     try {
         const author = await Author.findByPk(id);
         if (!author) {
-            return res.status(404).json({ message: 'Автор не найден' });
+            return res.status(404).json({ message: 'Author not found' });
         }
         res.json(author);
     } catch (error) {
-        res.status(500).json({ message: 'Ошибка извлечения информации об авторе', error });
+        res.status(500).json({ message: 'Error fetching author info', error });
     }
 };
