@@ -64,7 +64,7 @@ function renderBooks(books) {
     container.innerHTML = '';
 
     if (books.length === 0) {
-        container.innerHTML = '<p class="text text_book-card">Такие книги не найдены.</p>';
+        container.innerHTML = '<p class="text text_book-card text_center">Такие книги не найдены.</p>';
         return;
     }
 
@@ -189,10 +189,8 @@ function openForm() {
     document.getElementById('form-submit').textContent = 'добавить книгу';
 }
 
-// Открыть форму с заполнением существующих данных
 async function openUpdateForm(bookId) {
     try {
-        // Запросить данные книги по ID
         const response = await fetch(`${API_URL}/${bookId}`);
         if (!response.ok) throw new Error('Ошибка получения информации о книги');
         const book = await response.json();
@@ -205,14 +203,12 @@ async function openUpdateForm(bookId) {
         if (!resCategory.ok) throw new Error('Ошибка получения информации об авторе');
         const category = await resCategory.json();
 
-        // Открыть форму
         document.getElementById('add').style.display = "block";
         document.getElementById('page').style.height = '100vh';
         document.getElementById('page').style.overflow = 'hidden';
         document.getElementById('form').style.background = "linear-gradient(#efa078, #935727)";
         document.getElementById('switch').style.display = "none";
 
-        // Заполнить форму данными книги
         document.getElementById('form-header').textContent = 'Редактирование';
         document.getElementById('isbn').value = book.isbn || '';
         document.getElementById('title').value = book.title;
@@ -237,20 +233,19 @@ async function openUpdateForm(bookId) {
         document.getElementById('author_last_name').setAttribute("readonly", "readonly");
         document.getElementById('author_last_name').style.color = 'grey';
         document.getElementById('form-submit').textContent = 'готово';
-        // Сохранение ID редактируемой книги для дальнейшего использования
         document.getElementById('book-form').dataset.bookId = book.id;
     } catch (error) {
         console.error('Ошибка открытия формы редактирования:', error);
     }
 }
 
-// Обновление книги
+// обновление книги
 async function handleUpdateBook(event) {
     event.preventDefault();
     const form = event.target;
 
     const bookId = form.dataset.bookId;
-    if (!bookId) return; // Если ID отсутствует, это новая книга, а не редактирование
+    if (!bookId) return;
 
     const bookData = {
         isbn: form.isbn.value || null,
@@ -281,7 +276,6 @@ async function handleUpdateBook(event) {
     }
 }
 
-// Добавляем обработчик на кнопки "обновить"
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('books-container').addEventListener('click', (event) => {
         if (event.target.classList.contains('button_update')) {
@@ -291,7 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Переопределяем обработчик формы для обработки обновлений
 document.getElementById('book-form').addEventListener('submit', (event) => {
     if (event.target.dataset.bookId) {
         handleUpdateBook(event);

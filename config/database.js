@@ -2,12 +2,15 @@ import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 
 dotenv.config();
+const DB = process.env.DB_STORAGE;
 
 export const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: './database.sqlite',
+    storage: DB,
     logging: false,
 });
+
+sequelize.query('PRAGMA journal_mode=WAL;');
 
 export const connectDB = async () => {
     try {

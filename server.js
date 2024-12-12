@@ -18,15 +18,6 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/api/config', (req, res) => {
-    res.json({
-        apiUrl: `http://localhost:${PORT}/api/books`,
-        authorsUrl: `http://localhost:${PORT}/api/authors`,
-        categoriesUrl: `http://localhost:${PORT}/api/categories`,
-    });
-});
-
-
 // логи
 app.use((req, res, next) => {
     const requestId = uuidv4();
