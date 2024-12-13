@@ -1,13 +1,17 @@
 # Personal library
 
 ## Getting started
-
-1. Run backend server:
+1. Install dependencies:
+```shell
+npm install
+```
+   
+2. Run backend server:
 
 ```shell
 node ./server.js
 ```
 
-2. Open [localhost](http://localhost:5500/pages/index.html)
+3. Open [localhost](http://localhost:5500/pages/index.html)
 
-3. Enjoy the app!
+4. Enjoy the app!
