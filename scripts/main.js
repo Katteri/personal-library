@@ -112,17 +112,17 @@ async function handleFormSubmit(event) {
 
     const bookData = {
         isbn: form.isbn.value || null,
-        title: form.title.value,
-        description: form.description.value || null,
+        title: form.title.value.trim(),
+        description: form.description.value.trim() || null,
         reading_status: mapReadingStatus(form.reading_status.value),
         publication_date: form.publication_date.value,
         author: {
-            first_name: form.author_first_name.value || null,
-            middle_name: form.author_middle_name.value || null,
-            last_name: form.author_last_name.value,
+            first_name: form.author_first_name.value.trim() || null,
+            middle_name: form.author_middle_name.value.trim() || null,
+            last_name: form.author_last_name.value.trim(),
         },
         category: {
-            category_name: form.category_name.value || null,
+            category_name: form.category_name.value.trim() || null,
         },
     };
 
@@ -322,15 +322,15 @@ async function deleteBook(id) {
 async function openUpdateForm(bookId) {
     try {
         const response = await fetch(`${API_URL}/${bookId}`);
-        if (!response.ok) throw new Error('Ошибка получения информации о книги');
+        if (!response.ok) throw new Error('Failed to fetch book');
         const book = await response.json();
 
         const resAuthor = await fetch(`${AUTHORS_URL}/${book.author_id}`);
-        if (!resAuthor.ok) throw new Error('Ошибка получения информации об авторе');
+        if (!resAuthor.ok) throw new Error('Failed to fetch author');
         const author = await resAuthor.json();
 
         const resCategory = await fetch(`${CATEGORIES_URL}/${book.category_id}`);
-        if (!resCategory.ok) throw new Error('Ошибка получения информации об авторе');
+        if (!resCategory.ok) throw new Error('Failed to fetch category');
         const category = await resCategory.json();
 
         document.getElementById('add').style.display = "block";
@@ -354,26 +354,31 @@ async function openUpdateForm(bookId) {
         document.getElementById('category_name').setAttribute("readonly", "readonly");
         document.getElementById('category_name').style.color = 'grey';
         document.getElementById('category_name').placeholder = "";
+        document.getElementById('category_name').style.cursor = "default";
         document.getElementById('author_selector').value = `${author.first_name} ${author.last_name}`;
         document.getElementById('author_selector').setAttribute("readonly", "readonly");
         document.getElementById('author_selector').style.color = 'grey';
         document.getElementById('author_selector').placeholder = "";
+        document.getElementById('author_selector').style.cursor = "default";
         document.getElementById('author_first_name').value = author.first_name;
         document.getElementById('author_first_name').setAttribute("readonly", "readonly");
         document.getElementById('author_first_name').style.color = 'grey';
         document.getElementById('author_first_name').placeholder = "";
+        document.getElementById('author_first_name').style.cursor = "default";
         document.getElementById('author_middle_name').value = author.middle_name || '';
         document.getElementById('author_middle_name').setAttribute("readonly", "readonly");
         document.getElementById('author_middle_name').style.color = 'grey';
         document.getElementById('author_middle_name').placeholder = "";
+        document.getElementById('author_middle_name').style.cursor = "default";
         document.getElementById('author_last_name').value = author.last_name;
         document.getElementById('author_last_name').setAttribute("readonly", "readonly");
         document.getElementById('author_last_name').style.color = 'grey';
         document.getElementById('author_last_name').placeholder = "";
+        document.getElementById('author_last_name').style.cursor = "default";
         document.getElementById('form-submit').textContent = 'готово';
         document.getElementById('book-form').dataset.bookId = book.id;
     } catch (error) {
-        console.error('Ошибка открытия формы редактирования:', error);
+        console.error('Error open update form:', error);
     }
 }
 
@@ -386,8 +391,8 @@ async function handleUpdateBook(event) {
 
     const bookData = {
         isbn: form.isbn.value || null,
-        title: form.title.value,
-        description: form.description.value || null,
+        title: form.title.value.trim(),
+        description: form.description.value.trim() || null,
         reading_status: mapReadingStatus(form.reading_status.value),
         publication_date: form.publication_date.value,
     };
@@ -406,10 +411,10 @@ async function handleUpdateBook(event) {
             fetchBooks(getFilterValues());
         } else {
             const errorData = await response.json();
-            console.error('Ошибка обновления:', errorData.message);
+            console.error('Error updating book:', errorData.message);
         }
     } catch (error) {
-        console.error('Ошибка при обновлении книги:', error);
+        console.error('Error updating book:', error);
     }
 }
 

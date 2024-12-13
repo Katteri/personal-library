@@ -6,4 +6,5 @@
 .button_default:hover {  
   box-shadow: none;
   box-shadow: .3vw .5vw #935727;
+  transition: box-shadow .2s ease-in;
 }

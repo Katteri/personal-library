@@ -3,3 +3,33 @@
   width: 1vw;
   height: 6.5vw;
 }
+
+.green-lamp_button_main:checked ~ .green-lamp_rope_main {
+  animation-name: switch-rope_main;
+  animation-duration: .7s;
+  animation-timing-function: ease-out;
+}
+
+.green-lamp_button_main:checked ~ .green-lamp_point_main{
+  animation-name: switch-point_main;
+  animation-duration: .7s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes switch-rope_main {
+  from {
+    height: 5vw;
+  }
+  to {
+    height: 6vw;
+  }
+}
+
+@keyframes switch-point_main {
+  from {
+    top: 5.5vw;
+  }
+  to {
+    top: 6.5vw;
+  }
+}

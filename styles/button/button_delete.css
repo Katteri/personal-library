@@ -6,4 +6,5 @@
 .button_delete:hover {  
   box-shadow: none;
   box-shadow: .3vw .5vw #9c0b0a;
+  transition: box-shadow .2s ease-in;
 }

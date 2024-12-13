@@ -5,4 +5,5 @@
 
 .button_update:hover {
   box-shadow: .3vw .5vw #8e9a5d;
+  transition: box-shadow .2s ease-in;
 }

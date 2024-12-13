@@ -6,4 +6,5 @@
   letter-spacing: 0.2vw;
   padding-top: 3vw;
   color: #150c09;
+  transition: color .5s ease-in;
 }

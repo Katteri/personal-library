@@ -10,9 +10,41 @@
 }
 
 .green-lamp_button:checked ~ .green-lamp_light{
-  display: block;
+  opacity: 1;
+  transition: opacity 1s ease-out;
 }
 
 .green-lamp_button:checked ~ .green-lamp_frame > .text_header {
   color: #fbde9c;
+  transition: color 1s ease-out;
+}
+
+.green-lamp_button:checked ~ .green-lamp_switch > .green-lamp_rope{
+  animation-name: switch-rope;
+  animation-duration: .7s;
+  animation-timing-function: ease-out;
+}
+
+.green-lamp_button:checked ~ .green-lamp_switch > .green-lamp_point{
+  animation-name: switch-point;
+  animation-duration: .7s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes switch-rope {
+  from {
+    height: 10vw;
+  }
+  to {
+    height: 15vw;
+  }
+}
+
+@keyframes switch-point {
+  from {
+    top: 10.7vw;
+  }
+  to {
+    top: 15.7vw;
+  }
 }
