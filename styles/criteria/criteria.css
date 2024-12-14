@@ -8,7 +8,7 @@
   grid-template-areas: 
     "filtr-name filtr-1 filtr-2 filtr-3 go"
     "sort-name sort none none none"
-    "add add none none none";
+    "add add read read read";
   column-gap: 1vw;
   row-gap: 1.5vw;
 }

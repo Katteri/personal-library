@@ -94,6 +94,7 @@
                 <option value="category">По жанру</option>
             </select>
             <button id='open-form' class="button button_default button_add text">добавить книгу</button>
+            <button id='open-file' class="button button_default button_file text">чтение из файла</button>
         </div>
         <div id="books-container" class="books-container">
             <p class="text text_book-card text_center">Нет информации о книгах.</p>
@@ -101,9 +102,12 @@
         </section>
         <footer class="footer">
             <h4>ИНФОРМАЦИЯ О СЕРВЕРЕ</h4>
-            <div id="server-info" class="">Загрузка информации о сервере...</div>
+            <div id="server-info">Загрузка информации о сервере...</div>
         </footer>
     </div>
-    <script src="../scripts/main.js"></script>
+    <script src="../scripts/main/main.js"></script>
+    <script src="../scripts/main/renderBooks.js"></script>
+    <script src="../scripts/main/populateLists.js"></script>
+    <script src="../scripts/main/createUpdate.js"></script>
 </body>
 </html>

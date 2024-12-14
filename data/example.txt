@@ -1,1 +1,1 @@
-This is a text from ./data/example.txt file.
+Это текст из файла ./data/example.txt
