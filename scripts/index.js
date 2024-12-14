@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   greenLampButton.addEventListener('change', (event) => {
       if (event.target.checked) {
           setTimeout(() => {
-              window.location.href = './main.html';
+              window.location.href = './pages/main.html';
           }, 1000);
       }
   });

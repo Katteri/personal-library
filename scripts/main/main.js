@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     greenLampButton.addEventListener('change', (event) => {
         if (event.target.checked) {
             setTimeout(() => {
-                window.location.href = './index.html';
+                window.location.href = '../index.html';
             }, 1000);
         }
     });
